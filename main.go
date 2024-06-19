@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/mihailprokin/calculator/calc"
 )
 
 func main() {
-	calculator()
-}
-
-func calculator() {
 	var num1, num2 float64
+	var operator string
 
 	fmt.Print("Введите первое число: ")
 
@@ -21,7 +20,6 @@ func calculator() {
 
 	fmt.Print("Введите арифметический оператор (+, -, *, /): ")
 
-	var operator string
 	_, err = fmt.Scanln(&operator)
 	if err != nil {
 		fmt.Printf("Ошибка ввода арифметического оператора: %v", err)
@@ -36,20 +34,12 @@ func calculator() {
 		return
 	}
 
-	switch operator {
-	case "+":
-		fmt.Println(num1 + num2)
-	case "-":
-		fmt.Println(num1 - num2)
-	case "*":
-		fmt.Println(num1 * num2)
-	case "/":
-		if num2 == 0 {
-			fmt.Println("На ноль делить нельзя")
-			return
-		}
-		fmt.Println(num1 / num2)
-	default:
-		fmt.Println("Неизвестный арифметический оператор")
+	calc := calc.NewCalculator()
+	result, err := calc.Calculate(num1, num2, operator)
+	if err != nil {
+		fmt.Printf("Ошибка при выполнении арифметической операции: %v", err)
+		return
 	}
+
+	fmt.Printf("Результат операции: %v", result)
 }

@@ -1,4 +1,4 @@
-package calculator
+package calc
 
 import (
 	"errors"
@@ -8,8 +8,7 @@ import (
 // calculator - неэкспортируемая структура
 type calculator struct{}
 
-// NewCalculator - экспортируемая функция-конструктор
-// для создания экземпляра структуры calculator
+// NewCalculator - экспортируемая функция-конструктор для создания экземпляра структуры calculator
 func NewCalculator() *calculator {
 	return &calculator{}
 }
